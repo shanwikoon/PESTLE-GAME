@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup PESTLE Challenge</title>
+  <style>
+    /* General Styles */
+    body {
+      background-color: #F0F0F0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    h1 {
+      color: #4CAF50;
+    }
+    h2 {
+      color: #333366;
+    }
+    p {
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    ul {
+      margin-left: 20px;
+    }
+    .btn {
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      margin: 20px auto;
+    }
+    .btn:hover {
+      background-color: #007B9E;
+    }
+    /* Game Metrics Table */
+    .metrics-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .metrics-table th, .metrics-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    /* Scenario Box Styles */
+    .scenario-box {
+      border: 2px solid #333366;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .scenario-box h3 {
+      color: #333366;
+    }
+    /* Button Styles for game options */
+    .btn-option, .btn-next {
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px 5px 5px 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn-option:hover, .btn-next:hover {
+      background-color: #007B9E;
+    }
+    .final-feedback {
+      text-align: center;
+    }
+    .final-feedback h2 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Home Page Section -->
+  <div id="home-page" class="container">
+    <h1>Startup PESTLE Challenge</h1>
+    <h2>Welcome to LSST Learning Simulations</h2>
+    
+    <p><strong>What is PESTLE Analysis?</strong></p>
+    <p>
+      PESTLE stands for Political, Economic, Social, Technological, Legal and Environmental analysis. It is a strategic tool used to understand the external environment in which your business operates. For startups, a good PESTLE analysis helps you:
+    </p>
+    <ul>
+      <li>Identify opportunities and threats in the market</li>
+      <li>Understand customer and competitor dynamics</li>
+      <li>Plan for future trends and challenges</li>
+    </ul>
+    
+    <p><strong>Understanding Key Metrics</strong></p>
+    
+    <h2>Strategic Insight</h2>
+    <p>
+      This is basically understanding what’s happening in your market and industry.<br>
+      Think of it like having a good map before starting a journey. For startups, it means:
+    </p>
+    <ul>
+      <li>Knowing what your customers really want</li>
+      <li>Understanding who your competitors are and what makes you different</li>
+      <li>Seeing where your industry is heading before everyone else does</li>
+    </ul>
+    
+    <h2>Decision Effectiveness</h2>
+    <p>
+      This is about making good choices quickly and actually following through with them. For startups, it’s important because:
+    </p>
+    <ul>
+      <li>You usually do not have much money or time to waste on wrong decisions</li>
+      <li>You need to move fast but also think things through</li>
+      <li>Early mistakes can be really hard to fix when your business is just starting</li>
+    </ul>
+    
+    <h2>Risk Mitigation</h2>
+    <p>
+      This is about spotting possible problems early and having a plan to handle them. For new businesses, this matters because:
+    </p>
+    <ul>
+      <li>New companies can get hurt easily by unexpected problems</li>
+      <li>It helps you avoid wasting your limited money</li>
+      <li>It shows investors you have thought about what could go wrong and have a backup plan</li>
+    </ul>
+    
+    <p>
+      Think of these three working together like this: Strategic insight is like choosing the right road to take, decision effectiveness is about driving well on that road, and risk mitigation is like having insurance and a spare tyre for the journey.
+    </p>
+    
+    <button id="start-game-btn" class="btn">Start the Game</button>
+  </div>
+  
+  <!-- Game Page Section -->
+  <div id="game-container" class="container" style="display: none;">
+    <header>
+      <h1>Startup PESTLE Challenge</h1>
+      <h2>LSST Learning Simulations</h2>
+      <p>
+        Welcome to Startup PESTLE Challenge, an immersive simulation desinged  to challenge your strategic thinking and provide immediate feedback on your decisions.
+      </p>
+      <p>
+        <strong>Scoring System:</strong> Each decision adjusts your metrics based on positive and negative impacts. At the end, your Total Score is computed as: (Positive Metric Impact − Negative Metric Impact) + a Balance Bonus if all metrics remain between 50-70.
+      </p>
+    </header>
+    
+    <!-- Metrics Display -->
+    <section class="metrics">
+      <table class="metrics-table">
+        <thead>
+          <tr>
+            <th>Strategic Insight</th>
+            <th>Decision Effectiveness</th>
+            <th>Risk Mitigation</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="metric-insight">50</td>
+            <td id="metric-effectiveness">50</td>
+            <td id="metric-risk">50</td>
+            <td id="total-score">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    
+    <!-- Scenario Display -->
+    <section class="scenario">
+      <div class="scenario-box" id="scenario-box">
+        <h3 id="scenario-title">Scenario 1 of 8</h3>
+        <p id="scenario-text">Scenario text will appear here.</p>
+        <div id="options-container"></div>
+        <div id="feedback" style="margin-top:10px; font-weight:bold;"></div>
+        <button id="btn-next" class="btn-next" style="display:none;">Continue</button>
+      </div>
+    </section>
+    
+    <!-- Final Feedback Section -->
+    <section class="final-feedback" id="final-feedback" style="display:none;">
+      <h2>Game Over – Your Startup PESTLE Performance</h2>
+      <p id="final-score"></p>
+      <div id="detailed-feedback"></div>
+    </section>
+  </div>
+  
+  <script>
+    // When the user clicks "Start the Game," hide the home page and show the game page.
+    document.getElementById('start-game-btn').addEventListener('click', function() {
+      document.getElementById('home-page').style.display = "none";
+      document.getElementById('game-container').style.display = "block";
+      loadScenario(); // Load the first scenario immediately.
+    });
+    
+    // Global Game Variables and Scenario Data
+    let currentScenarioIndex = 0;
+    const scenarios = [
+      {
+        scenarioText: "Your startup is planning to launch in a region with uncertain political stability. How do you proceed?",
+        options: [
+          {
+            text: "Engage local government officials to build alliances.",
+            impact: { insight: +10, effectiveness: +5, risk: -5 },
+            feedback: "This option boosts your Strategic Insight and Decision Effectiveness by building key alliances, while slightly reducing Risk Mitigation due to established channels."
+          },
+          {
+            text: "Avoid government interactions to minimise complications.",
+            impact: { insight: -5, effectiveness: 0, risk: +10 },
+            feedback: "Avoiding government interactions lowers your Strategic Insight as you miss official intel, and increases risk due to potential regulatory surprises."
+          }
+        ]
+      },
+      {
+        scenarioText: "The economic climate is volatile due to a downturn. How do you adjust your business strategy?",
+        options: [
+          {
+            text: "Adjust pricing strategy and streamline operations.",
+            impact: { insight: +5, effectiveness: +10, risk: -5 },
+            feedback: "Optimising pricing and operations raises Decision Effectiveness and offers valuable market insight while reducing risks amid economic instability."
+          },
+          {
+            text: "Maintain current operations and wait for market stabilisation.",
+            impact: { insight: -5, effectiveness: -5, risk: +5 },
+            feedback: "Sticking to your current plan might preserve resources, but decreases insight and effectiveness, and increases risk if the downturn worsens."
+          }
+        ]
+      },
+      {
+        scenarioText: "Social trends indicate a growing consumer preference for sustainability. What is your approach?",
+        options: [
+          {
+            text: "Integrate sustainability into your core business model.",
+            impact: { insight: +10, effectiveness: +5, risk: 0 },
+            feedback: "Embracing sustainability enhances your market insight and decision quality, positioning your startup favourably with socially-conscious consumers."
+          },
+          {
+            text: "Continue with current practices and monitor trends.",
+            impact: { insight: 0, effectiveness: -5, risk: +5 },
+            feedback: "Monitoring trends without proactive changes may save costs initially, but lowers effectiveness and leaves you vulnerable to market shifts."
+          }
+        ]
+      },
+      {
+        scenarioText: "A disruptive new technology is emerging in your industry. How do you respond?",
+        options: [
+          {
+            text: "Invest in research and development to integrate the new technology.",
+            impact: { insight: +5, effectiveness: +10, risk: -5 },
+            feedback: "Investing in R&D increases effectiveness and offers critical insights, reducing risk by preparing your startup for technological shifts."
+          },
+          {
+            text: "Focus on current technology and observe market reactions.",
+            impact: { insight: -5, effectiveness: 0, risk: +10 },
+            feedback: "Focusing on what you know preserves stability but reduces insight and may increase risk if the new technology overtakes the market."
+          },
+          {
+            text: "Form strategic partnerships to share innovation risks.",
+            impact: { insight: +5, effectiveness: +5, risk: 0 },
+            feedback: "Partnerships can balance benefits and risks, offering moderate improvements in insight and effectiveness without substantially altering risk levels."
+          }
+        ]
+      },
+      {
+        scenarioText: "New regulations are being introduced that could affect your operations. What is your move?",
+        options: [
+          {
+            text: "Proactively adapt your business to comply with new laws.",
+            impact: { insight: +10, effectiveness: +5, risk: -5 },
+            feedback: "Adapting early increases your insight and effectiveness by keeping you ahead of regulations, while lowering risk from non-compliance."
+          },
+          {
+            text: "Lobby against the regulations to delay implementation.",
+            impact: { insight: -5, effectiveness: -5, risk: +10 },
+            feedback: "Lobbying may delay changes, but reduces insight and effectiveness, increasing risk due to potential future penalties."
+          }
+        ]
+      },
+      {
+        scenarioText: "There is increasing public demand for eco-friendly practices. How do you address this?",
+        options: [
+          {
+            text: "Implement eco-friendly policies and highlight them in your branding.",
+            impact: { insight: +10, effectiveness: +5, risk: -5 },
+            feedback: "Adopting eco-friendly policies boosts your market insight and effectiveness, while reducing risk through positive brand perception."
+          },
+          {
+            text: "Ignore environmental trends to focus on short-term profitability.",
+            impact: { insight: -5, effectiveness: +5, risk: +5 },
+            feedback: "Focusing on short-term gains may temporarily boost effectiveness but lowers insight and increases risk as consumer preferences shift."
+          }
+        ]
+      },
+      {
+        scenarioText: "Multiple external factors are presenting mixed signals. How do you proceed?",
+        options: [
+          {
+            text: "Conduct a thorough market analysis and adjust your strategy accordingly.",
+            impact: { insight: +5, effectiveness: +10, risk: -5 },
+            feedback: "A detailed market analysis sharpens your insight and decision-making, reducing risk by adapting to a complex environment."
+          },
+          {
+            text: "Stick to your original business plan despite external fluctuations.",
+            impact: { insight: -5, effectiveness: -5, risk: +10 },
+            feedback: "Adhering strictly to your plan may provide consistency, but lowers insight and effectiveness, and increases risk if market conditions change dramatically."
+          }
+        ]
+      },
+      {
+        scenarioText: "As you prepare for launch, all external factors converge. Which final adjustment do you make?",
+        options: [
+          {
+            text: "Diversify your approach to balance all influences.",
+            impact: { insight: +10, effectiveness: +10, risk: -10 },
+            feedback: "Diversification maximises your overall strengths by increasing insight and effectiveness, while significantly reducing risk through balanced decision-making."
+          },
+          {
+            text: "Focus heavily on one strong external factor, ignoring the rest.",
+            impact: { insight: -10, effectiveness: +5, risk: +10 },
+            feedback: "Concentrating on one area may yield short-term gains, but drastically reduces overall insight and increases risk if other factors become critical."
+          },
+          {
+            text: "Reassess and adjust gradually based on real-time feedback.",
+            impact: { insight: +5, effectiveness: +5, risk: +5 },
+            feedback: "A gradual adjustment strategy offers moderate improvements across all metrics, though it may not fully capitalise on potential advantages."
+          }
+        ]
+      }
+    ];
+
+    // Initial metrics
+    let metrics = {
+      insight: 50,
+      effectiveness: 50,
+      risk: 50,
+      score: 0
+    };
+
+    // Function to update metrics display
+    function updateMetricsDisplay() {
+      document.getElementById('metric-insight').innerText = metrics.insight;
+      document.getElementById('metric-effectiveness').innerText = metrics.effectiveness;
+      document.getElementById('metric-risk').innerText = metrics.risk;
+      document.getElementById('total-score').innerText = metrics.score;
+    }
+
+    // Function to shuffle options array (Fisher-Yates shuffle)
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    // Function to load the current scenario
+    function loadScenario() {
+      // Hide next button and clear feedback
+      document.getElementById('btn-next').style.display = "none";
+      document.getElementById('feedback').innerText = "";
+
+      // Check if there are scenarios left
+      if (currentScenarioIndex < scenarios.length) {
+        const currentScenario = scenarios[currentScenarioIndex];
+        document.getElementById('scenario-title').innerText = "Scenario " + (currentScenarioIndex + 1) + " of " + scenarios.length;
+        document.getElementById('scenario-text').innerText = currentScenario.scenarioText;
+
+        // Clear previous options and load current ones
+        const optionsContainer = document.getElementById('options-container');
+        optionsContainer.innerHTML = "";
+        let options = currentScenario.options.slice();
+        shuffleArray(options);
+        options.forEach((option) => {
+          let btn = document.createElement('button');
+          btn.innerText = option.text;
+          btn.className = "btn-option";
+          btn.onclick = () => handleOptionSelected(option);
+          optionsContainer.appendChild(btn);
+        });
+      } else {
+        showFinalFeedback();
+      }
+    }
+
+    // Handle user selection of an option
+    function handleOptionSelected(option) {
+      // Disable all option buttons
+      const buttons = document.querySelectorAll('.btn-option');
+      buttons.forEach(btn => btn.disabled = true);
+
+      // Update metrics and score; the score is computed as the sum of impacts.
+      metrics.insight += option.impact.insight;
+      metrics.effectiveness += option.impact.effectiveness;
+      metrics.risk += option.impact.risk;
+      metrics.score += (option.impact.insight + option.impact.effectiveness + option.impact.risk);
+
+      // Update feedback with detailed information
+      const feedbackMsg = option.feedback + "\n" +
+                          "Impact: Strategic Insight (" + (option.impact.insight >= 0 ? "+" : "") + option.impact.insight + "), " +
+                          "Decision Effectiveness (" + (option.impact.effectiveness >= 0 ? "+" : "") + option.impact.effectiveness + "), " +
+                          "Risk Mitigation (" + (option.impact.risk >= 0 ? "+" : "") + option.impact.risk + ").";
+      document.getElementById('feedback').innerText = feedbackMsg;
+
+      updateMetricsDisplay();
+
+      // Show the Continue button after a selection is made.
+      document.getElementById('btn-next').style.display = "inline-block";
+    }
+
+    // Proceed to the next scenario
+    document.getElementById('btn-next').addEventListener('click', () => {
+      currentScenarioIndex++;
+      loadScenario();
+    });
+
+    // Final Feedback: Evaluate bonus for balanced metrics (if all are between 50 and 70 inclusive)
+    function showFinalFeedback() {
+      document.getElementById('scenario-box').style.display = "none";
+      document.getElementById('final-feedback').style.display = "block";
+      let bonus = 0;
+      if (metrics.insight >= 50 && metrics.insight <= 70 &&
+          metrics.effectiveness >= 50 && metrics.effectiveness <= 70 &&
+          metrics.risk >= 50 && metrics.risk <= 70) {
+        bonus = 10;
+      }
+      const finalScore = metrics.score + bonus;
+      document.getElementById('final-score').innerText = "Final Score: " + finalScore + " (Bonus: " + bonus + ")";
+      
+      let detailedFeedback = "Detailed Performance:\n";
+      detailedFeedback += "Strategic Insight: " + metrics.insight + "\n";
+      detailedFeedback += "Decision Effectiveness: " + metrics.effectiveness + "\n";
+      detailedFeedback += "Risk Mitigation: " + metrics.risk + "\n";
+      detailedFeedback += "Your balanced decision-making  and adaptability led to this final outcome. Keep refining your strategy based on these insights!";
+      
+      document.getElementById('detailed-feedback').innerText = detailedFeedback;
+    }
+  </script>
+</body>
+</html>
